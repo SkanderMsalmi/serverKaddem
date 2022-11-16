@@ -1,5 +1,9 @@
 package tn.esprit.persistance.repositories;
 
-public interface ContratRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import tn.esprit.persistance.entities.Contrat;
+
+public interface ContratRepository extends JpaRepository<Contrat, Integer>{
 
 }

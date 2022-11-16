@@ -1,5 +1,10 @@
 package tn.esprit.persistance.repositories;
 
-public interface DetailEquipeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+import tn.esprit.persistance.entities.DetailEquipe;
+
+public interface DetailEquipeRepository extends JpaRepository<DetailEquipe, Integer>{
 
 }
