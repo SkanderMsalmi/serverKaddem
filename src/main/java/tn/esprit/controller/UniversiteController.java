@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import tn.esprit.persistance.entities.Universite;
+import tn.esprit.service.interfaces.DepartementService;
 import tn.esprit.service.interfaces.UniversiteService;
 
 @RestController
@@ -20,6 +22,9 @@ import tn.esprit.service.interfaces.UniversiteService;
 public class UniversiteController {
 	@Autowired
 	UniversiteService eServ;
+	
+	@Autowired
+	DepartementService depServ;
 	
 	@GetMapping("/displayUniversite/{id}")
 	public Universite displayUniversite(@PathVariable("id")int id) {
@@ -33,6 +38,12 @@ public class UniversiteController {
 	
 	@PostMapping("/addUniversite")
 	public Universite addUniversite( @RequestBody Universite e) {
+		
+		e.getDepartements().forEach(
+				(d)->{
+					depServ.addDepartement(d);
+				}
+				);
 		return eServ.addUniversite(e);
 	}
 	
@@ -44,5 +55,10 @@ public class UniversiteController {
 	@DeleteMapping("/deleteUniversite/{id}")
 	public void deleteUniversite(@PathVariable("id")int id) {
 		eServ.removeUniversite(id);
+	}
+	
+	@PostMapping("{idUniv}/assignUniversiteToDepartement/{idDep}")
+	public void assignUniversiteToDepartement(@PathVariable("idUniv")int idUniv,@PathVariable("idDep")int idDept) {
+		eServ.assignUniversiteToDepartement(idUniv, idDept);
 	}
 }

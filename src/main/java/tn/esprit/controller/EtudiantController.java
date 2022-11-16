@@ -49,4 +49,26 @@ public class EtudiantController {
 	public void deleteStudent(@PathVariable("id")int id) {
 		eServ.removeEtudiant(id);
 	}
+	
+	@PostMapping("/assignEtudToDepart/{idEtudiant}/{idDepart}")
+	public void assignEtudiantToDepartement(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idDepart") int idDepart) {
+		try {
+			eServ.assignEtudiantToDepartement(idEtudiant, idDepart);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+	}
+	
+	@PostMapping("/addAndAssignEtudiantToEquipeAndContract/{idEquip}/{idContrat}")
+	public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable("idContrat") int idContrat,@PathVariable("idEquip") int idEtudiant) {
+		try {
+			return eServ.addAndAssignEtudiantToEquipeAndContract(e, idContrat, idEtudiant);
+		} catch (Exception e2) {
+			// TODO: handle exception
+			System.out.println(e2);
+			return null;
+		}
+	}
 }

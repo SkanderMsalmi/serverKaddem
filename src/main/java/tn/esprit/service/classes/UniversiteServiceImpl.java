@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.persistance.entities.Departement;
 import tn.esprit.persistance.entities.Universite;
+import tn.esprit.persistance.repositories.DepartementRepository;
 import tn.esprit.persistance.repositories.UniversiteRepository;
 import tn.esprit.service.interfaces.UniversiteService;
 
@@ -14,6 +16,9 @@ public class UniversiteServiceImpl implements UniversiteService {
 	
 	@Autowired
 	UniversiteRepository univRep;
+	
+	@Autowired
+	DepartementRepository depRep;
 	
 	@Override
 	public List<Universite> retrieveAllUniversites() {
@@ -46,5 +51,15 @@ public class UniversiteServiceImpl implements UniversiteService {
 		// TODO Auto-generated method stub
 		univRep.deleteById(idUniversite);
 	}
+
+	@Override
+	public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement) {
+		// TODO Auto-generated method stub
+		Universite u = univRep.findById(idUniversite).get();
+		Departement d = depRep.findById(idDepartement).get();
+		u.getDepartements().add(d);
+		univRep.save(u);
+		
+;	}
 
 }

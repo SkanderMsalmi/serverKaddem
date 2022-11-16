@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public class Universite implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUniv;
 	private String nomUniv;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Departement> departements;

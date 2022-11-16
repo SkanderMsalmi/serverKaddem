@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.persistance.entities.Contrat;
+import tn.esprit.persistance.entities.Departement;
+import tn.esprit.persistance.entities.Equipe;
 import tn.esprit.persistance.entities.Etudiant;
+import tn.esprit.persistance.repositories.ContratRepository;
+import tn.esprit.persistance.repositories.DepartementRepository;
+import tn.esprit.persistance.repositories.EquipeRepository;
 import tn.esprit.persistance.repositories.EtudiantRepository;
 import tn.esprit.service.interfaces.EtudiantService;
 
@@ -14,6 +20,15 @@ public class EtudiantServiceImpl implements EtudiantService{
 	
 	@Autowired
 	EtudiantRepository etudRep;
+	
+	@Autowired
+	DepartementRepository departRep;
+	
+	@Autowired
+	ContratRepository contRep;
+	
+	@Autowired
+	EquipeRepository equipRep;
 	
 	@Override
 	public List<Etudiant> retrieveAllEtudiants() {
@@ -50,5 +65,29 @@ public class EtudiantServiceImpl implements EtudiantService{
 		etudRep.deleteById(idEtudiant);
 		
 	}
+
+	@Override
+	public void assignEtudiantToDepartement(Integer idEtudiant, Integer idDepart) {
+		Etudiant e = etudRep.findById(idEtudiant).get();
+		Departement d = departRep.findById(idDepart).get();
+		e.setDepartement(d);
+		etudRep.save(e);
+	}
+
+	@Override
+	public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
+		// TODO Auto-generated method stub
+		 Etudiant etud = etudRep.save(e);
+		 Contrat c = contRep.findById(idContrat).get();
+		 Equipe equip = equipRep.findById(idEquipe).get();
+		 c.setEtudiant(e);
+		 equip.getEtudiants().add(e);
+		 contRep.save(c);
+		 equipRep.save(equip);
+		return etud;
+		
+	}
+
+
 
 }
