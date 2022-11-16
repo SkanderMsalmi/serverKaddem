@@ -45,4 +45,9 @@ public class ContratController {
 	public void deleteContrat(@PathVariable("id")int id) {
 		CServ.removeContrat(id);
 	}
+	
+	@PostMapping("/affectContratToEtudiant/{nomE}/{prenomE}")
+	public Contrat affectContratToEtudiant(@RequestBody Contrat c,@PathVariable("nomE") String nomE,@PathVariable("prenomE") String prenomE) {
+		return CServ.affectContratToEtudiant(c, nomE, prenomE);
+	}
 }
