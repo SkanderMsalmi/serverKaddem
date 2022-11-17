@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +48,7 @@ public class Contrat implements Serializable{
  private boolean archive;
  private Integer montantContrat;
  
+ @JsonIgnore
  @ManyToOne
  Etudiant etudiant;
 }

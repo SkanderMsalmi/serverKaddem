@@ -90,9 +90,18 @@ public class EtudiantServiceImpl implements EtudiantService{
 
 	@Override
 	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
-		List<Etudiant> etudiants = etudRep.findEtuidantByDepartement(idDepartement);
-		return etudiants;
+		// TODO Auto-generated method stub
+		Departement d = departRep.findById(idDepartement).get();
+		
+		
+		return null;
 	}
+
+//	@Override
+//	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
+//		List<Etudiant> etudiants = etudRep.findEtuidantByDepartement(idDepartement);
+//		return etudiants;
+//	}
 
 
 

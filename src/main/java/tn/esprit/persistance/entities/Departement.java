@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +39,7 @@ public class Departement implements Serializable{
 	@Column(name="idDepart")
 	private Integer idDepart;
 	private String nomDepart;
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "departement")
 	private Set<Etudiant> etudiants;
 }
