@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,9 +43,11 @@ public class Equipe implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Niveau niveau;
 	
+	@JsonIgnore
 	@OneToOne
 	private DetailEquipe detailEquipe;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Etudiant> etudiants;
 }

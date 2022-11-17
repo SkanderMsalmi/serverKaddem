@@ -50,12 +50,7 @@ public class DepartementServiceImpl implements DepartementService{
 		depRep.deleteById(idDepartement);
 	}
 
-	@Override
-	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
-		
-		
-		return etudRep.findEtuidantByDepartement(idDepartement);
-	}
+	
 
 	
 

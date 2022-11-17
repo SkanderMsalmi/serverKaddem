@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +36,7 @@ public class Universite implements Serializable{
 	private Integer idUniv;
 	private String nomUniv;
 	
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Departement> departements;
 }
