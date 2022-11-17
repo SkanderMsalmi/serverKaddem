@@ -14,7 +14,7 @@ public interface EtudiantService {
 	
 	
 	
-	
+	List<Etudiant> getEtudiantsByDepartement (Integer idDepartement);
 	public void assignEtudiantToDepartement (Integer idEtudiant, Integer idDepart) ;
 	Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
 }

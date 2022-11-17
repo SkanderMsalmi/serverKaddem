@@ -88,6 +88,14 @@ public class EtudiantServiceImpl implements EtudiantService{
 		
 	}
 
+	@Override
+	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
+		List<Etudiant> etudiants = etudRep.findEtuidantByDepartement(idDepartement);
+		return etudiants;
+	}
+
+
+
 
 
 }
