@@ -2,6 +2,7 @@ package tn.esprit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import tn.esprit.persistance.entities.*;
 
 
 import tn.esprit.service.interfaces.EtudiantService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/ControleurEtudiant")
 public class EtudiantController {
@@ -48,5 +49,46 @@ public class EtudiantController {
 	@DeleteMapping("/deleteStudent/{id}")
 	public void deleteStudent(@PathVariable("id")int id) {
 		eServ.removeEtudiant(id);
+	}
+	
+	@PostMapping("/assignEtudToDepart/{idEtudiant}/{idDepart}")
+	public void assignEtudiantToDepartement(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idDepart") int idDepart) {
+		try {
+			eServ.assignEtudiantToDepartement(idEtudiant, idDepart);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+	}
+	
+	@PostMapping("/addAndAssignEtudiantToEquipeAndContract/{idEquip}/{idContrat}")
+	public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable("idContrat") int idContrat,@PathVariable("idEquip") int idEtudiant) {
+		try {
+			return eServ.addAndAssignEtudiantToEquipeAndContract(e, idContrat, idEtudiant);
+		} catch (Exception e2) {
+			// TODO: handle exception
+			System.out.println(e2);
+			return null;
+		}
+	}
+	
+	@PostMapping("/assignEtudiantToEquipe/{idEtudiant}/{idEquipe}")
+	public void assignEtudiantToEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.assigEtudiantToEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+	}
+	@PostMapping("/unassignEtudiantFromoEquipe/{idEtudiant}/{idEquipe}")
+	public void unassignEtudiantFromoEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.unassignEtudiantFromEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
 	}
 }

@@ -11,4 +11,12 @@ public interface EtudiantService {
 	Etudiant retrieveEtudiant(Integer idEtudiant);
 	void removeEtudiant(Integer idEtudiant);
 	
+	
+	
+	
+	List<Etudiant> getEtudiantsByDepartement (Integer idDepartement);
+	public void assignEtudiantToDepartement (Integer idEtudiant, Integer idDepart) ;
+	Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
+	public void assigEtudiantToEquipe(Integer idEtudiant,Integer idEquipe);
+	public void unassignEtudiantFromEquipe(Integer idEtudiant,Integer idEquipe);
 }

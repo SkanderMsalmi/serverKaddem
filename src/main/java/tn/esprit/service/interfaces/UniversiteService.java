@@ -10,5 +10,5 @@ public interface UniversiteService {
 	Universite updateUniversite(Universite e);
 	Universite retrieveUniversite(Integer idUniversite);
 	void removeUniversite(Integer idUniversite);
-
+	public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement);
 }

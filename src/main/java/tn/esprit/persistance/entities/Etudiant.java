@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,11 +49,14 @@ public class Etudiant implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Option opt;
 	
+	
 	@OneToMany(cascade= CascadeType.ALL ,mappedBy = "etudiant")
 	private Set<Contrat> contrat;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.ALL)
 	private Set<Equipe> equipes;
+	
 	
 	@ManyToOne
 	private Departement departement;
