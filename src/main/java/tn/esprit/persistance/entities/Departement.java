@@ -39,7 +39,8 @@ public class Departement implements Serializable {
 	private String nomDepart;
 	private String codeInterne; 
 	private String chefDepart;
-	private String emailDepart;  
+	private String emailDepart;   
+	private String bloc;
 	
 	
 
@@ -53,7 +54,12 @@ public class Departement implements Serializable {
 	@Override
 	public String toString() {
 		return "Departement [idDepartement=" + idDepartement + ", nomDepart=" + nomDepart + ", codeInterne="
-				+ codeInterne + ", chefDepart=" + chefDepart + ", emailDepart=" + emailDepart + "]";
+				+ codeInterne + ", chefDepart=" + chefDepart + ", emailDepart=" + emailDepart + ", bloc=" + bloc + "]";
 	}
+
+
+
+
+
 
 }
