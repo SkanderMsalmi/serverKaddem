@@ -16,39 +16,38 @@ import tn.esprit.persistance.entities.Departement;
 import tn.esprit.service.interfaces.DepartementService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/ControleurDepartement")
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*")
+@RequestMapping("/controllerDepartement")
 public class DepartementController {
-	@Autowired
-	DepartementService DServ;
-	
-	@GetMapping("/displayDepartement")
-	public Departement displayDepartement(@PathVariable("id")int id) {
-		return DServ.retrieveDepartement(id);
-	}
+	 @Autowired
+	    DepartementService departService;
 
-	
-	@GetMapping("/displayDepartements")
-	public List<Departement> displayAllDepartements(){
-		return DServ.retrieveAllDepartements();
-	}
-	
-	@PostMapping("/addDepartement")
-	public Departement addDepartement( @RequestBody Departement e) {
-		return DServ.addDepartement(e);
-	}
-	
-	@PutMapping("/updateDepartement")
-	public Departement updateDepartement(@RequestBody Departement e) {
-		return DServ.updateDepartement(e);
-	}
-	
-	@DeleteMapping("/deleteDepartement")
-	public void deleteDepartement(@PathVariable("id")int id) {
-		DServ.removeDepartement(id);
-	}
-	
+	    
+	    @GetMapping("/DisplayDepartements")
+	    public List<Departement> DisplayDepartement() {
+	        return departService.afficherDepartements();
+	    }
+	    
+	    @GetMapping("/DisplayDepartementById/{id}")
+	    public Departement displayDepartementByID(@PathVariable("id") int id) {
 
-	
-	
+	        return departService.afficherDepartement(id);
+	    }
+	    
+	    @CrossOrigin
+	    @PostMapping("/AddDepartement")
+	    public Departement addDepartement(@RequestBody Departement e) {
+	        return departService.ajouterDepartement(e);
+	    }
+	    
+	    @PutMapping("/UpdateDepartement")
+	    public Departement updateDepartement(@RequestBody Departement e) {
+	        return departService.mettreAjourDepartement(e);
+	    }
+	    
+	    @DeleteMapping("/deleteDepartement/{idDepartement}")
+	    public void deleteDepartement(@PathVariable("idDepartement") int id) {
+	        departService.supprimerDepartement(id);
+	    }
 	
 }

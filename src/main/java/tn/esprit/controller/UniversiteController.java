@@ -41,7 +41,7 @@ public class UniversiteController {
 		
 		e.getDepartements().forEach(
 				(d)->{
-					depServ.addDepartement(d);
+					depServ. ajouterDepartement(d);
 				}
 				);
 		return eServ.addUniversite(e);
