@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.persistance.entities.Departement;
 import tn.esprit.service.interfaces.DepartementService;
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/controllerDepartement")
