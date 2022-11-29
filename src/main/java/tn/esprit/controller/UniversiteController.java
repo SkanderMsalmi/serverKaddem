@@ -1,7 +1,17 @@
 package tn.esprit.controller;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,21 +47,22 @@ public class UniversiteController {
 	}
 	
 	@PostMapping("/addUniversite")
-	public Universite addUniversite( @RequestBody Universite e) {
+	public Universite addUniversite(@Valid @RequestBody Universite e) {
 		
-		e.getDepartements().forEach(
-				(d)->{
-					depServ. ajouterDepartement(d);
-				}
-				);
+		
 		return eServ.addUniversite(e);
 	}
-	
-	@PutMapping("/updateUniversite")
-	public Universite updateUniversite(@RequestBody Universite e) {
-		return eServ.updateUniversite(e);
-	}
-	
+	@PutMapping("/updateUniversite/{id}")
+	    public ResponseEntity<?> update(@Valid @RequestBody Universite universite, @PathVariable Integer id) {
+	        try {
+	            eServ.retrieveUniversite(id);
+	            universite.setIdUniv(id);
+	            eServ.addUniversite(universite);
+	            return new ResponseEntity<>(HttpStatus.OK);
+	        } catch (NoSuchElementException e) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
 	@DeleteMapping("/deleteUniversite/{id}")
 	public void deleteUniversite(@PathVariable("id")int id) {
 		eServ.removeUniversite(id);
