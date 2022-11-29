@@ -2,6 +2,7 @@ package tn.esprit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import tn.esprit.persistance.entities.*;
 
 
 import tn.esprit.service.interfaces.EtudiantService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/ControleurEtudiant")
 public class EtudiantController {
@@ -69,6 +70,25 @@ public class EtudiantController {
 			// TODO: handle exception
 			System.out.println(e2);
 			return null;
+		}
+	}
+	
+	@PostMapping("/assignEtudiantToEquipe/{idEtudiant}/{idEquipe}")
+	public void assignEtudiantToEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.assigEtudiantToEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+	}
+	@PostMapping("/unassignEtudiantFromoEquipe/{idEtudiant}/{idEquipe}")
+	public void unassignEtudiantFromoEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.unassignEtudiantFromEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
 		}
 	}
 }

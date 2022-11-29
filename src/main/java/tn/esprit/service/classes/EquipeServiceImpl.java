@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.persistance.entities.Equipe;
+import tn.esprit.persistance.repositories.DetailEquipeRepository;
 import tn.esprit.persistance.repositories.EquipeRepository;
+import tn.esprit.service.interfaces.DetailEquipeService;
 import tn.esprit.service.interfaces.EquipeService;
 
 @Service
@@ -14,6 +16,9 @@ public class EquipeServiceImpl implements EquipeService{
 	
 	@Autowired
 	EquipeRepository equipRep;
+	
+	@Autowired
+	DetailEquipeRepository detRep;
 	
 	
 	@Override
@@ -26,12 +31,16 @@ public class EquipeServiceImpl implements EquipeService{
 	@Override
 	public Equipe addEquipe(Equipe e) {
 		// TODO Auto-generated method stub
+		
 		return equipRep.save(e);
 	}
 
 	@Override
 	public Equipe updateEquipe(Equipe e) {
 		// TODO Auto-generated method stub
+		
+
+		
 		return equipRep.save(e);
 	}
 
@@ -44,6 +53,8 @@ public class EquipeServiceImpl implements EquipeService{
 	@Override
 	public void removeEquipe(Integer idEquipe) {
 		// TODO Auto-generated method stub
+		Equipe e = equipRep.findById(idEquipe).get();
+		detRep.delete(e.getDetailEquipe());
 		equipRep.deleteById(idEquipe);
 	}
 
