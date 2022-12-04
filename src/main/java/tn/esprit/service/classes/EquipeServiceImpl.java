@@ -58,4 +58,15 @@ public class EquipeServiceImpl implements EquipeService{
 		equipRep.deleteById(idEquipe);
 	}
 
+	@Override
+	public boolean checkName(String nomEquipe) {
+		List<Equipe> equipes = (List<Equipe>) equipRep.findAll();
+		for (Equipe equipe : equipes) {
+			if(equipe.getNomEquipe().equals( nomEquipe)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

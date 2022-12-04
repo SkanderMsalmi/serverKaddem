@@ -48,6 +48,6 @@ public class Equipe implements Serializable{
 	private DetailEquipe detailEquipe;
 	
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private Set<Etudiant> etudiants;
 }

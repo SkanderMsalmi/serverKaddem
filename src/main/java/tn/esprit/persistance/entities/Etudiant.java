@@ -46,10 +46,12 @@ public class Etudiant implements Serializable{
 	private Integer idEtudiant;
 	private String prenomE;
 	private String nomE;
+	@Column(length = 50000000)
+	private byte[] profileImage;
 	@Enumerated(EnumType.STRING)
 	private Option opt;
 	
-	
+	@JsonIgnore
 	@OneToMany(cascade= CascadeType.ALL ,mappedBy = "etudiant")
 	private Set<Contrat> contrat;
 	
@@ -57,7 +59,7 @@ public class Etudiant implements Serializable{
 	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.ALL)
 	private Set<Equipe> equipes;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	private Departement departement;
 	

@@ -60,4 +60,9 @@ public class EquipeController {
 	public void deleteEquipe(@PathVariable("id")int id) {
 		eServ.removeEquipe(id);
 	}
+	
+	@GetMapping("/checkName/{nomEquipe}")
+	public boolean checkName(@PathVariable("nomEquipe")String nomEquipe) {
+		return eServ.checkName(nomEquipe);
+	}
 }
