@@ -38,15 +38,21 @@ public class Departement implements Serializable {
 	private Integer idDepartement; 
 	private String nomDepart;
 	private String codeInterne; 
-	private String chefDepart;
-	private String emailDepart;   
 	private String bloc;
 	
+	
+	
+
 	
 
     
 	@OneToMany(mappedBy = "departement")
 	private Set<Etudiant> Etudiants;
+	
+	
+	
+	@OneToMany(mappedBy ="departement",  cascade = CascadeType.ALL)
+	private Set<Enseignant> enseignants;
 
 
 
@@ -54,7 +60,7 @@ public class Departement implements Serializable {
 	@Override
 	public String toString() {
 		return "Departement [idDepartement=" + idDepartement + ", nomDepart=" + nomDepart + ", codeInterne="
-				+ codeInterne + ", chefDepart=" + chefDepart + ", emailDepart=" + emailDepart + ", bloc=" + bloc + "]";
+				+ codeInterne + ", bloc=" + bloc + "]";
 	}
 
 

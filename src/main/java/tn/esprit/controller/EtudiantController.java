@@ -2,6 +2,7 @@ package tn.esprit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import tn.esprit.persistance.entities.*;
 
 
 import tn.esprit.service.interfaces.EtudiantService;
-
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("/ControleurEtudiant")
 public class EtudiantController {
