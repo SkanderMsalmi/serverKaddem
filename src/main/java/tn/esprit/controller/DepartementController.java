@@ -50,4 +50,10 @@ public class DepartementController {
 	        departService.supprimerDepartement(id);
 	    }
 	
+	    
+	    @GetMapping
+	    ("/displayUniversiteDepartements/{id}")
+	    public List<Departement> displayUniversiteDep(@PathVariable("id") Integer idUniversite){
+	    return departService.retrieveDepartByUniId(idUniversite);
+	    }
 }

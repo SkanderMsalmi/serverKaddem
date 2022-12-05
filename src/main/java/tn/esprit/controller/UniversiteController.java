@@ -72,4 +72,14 @@ public class UniversiteController {
 	public void assignUniversiteToDepartement(@PathVariable("idUniv")int idUniv,@PathVariable("idDep")int idDept) {
 		eServ.assignUniversiteToDepartement(idUniv, idDept);
 	}
+	
+    @PostMapping("/unassignDeapartementFromUniversite/{idUniv}/{idDep}")
+    public void unassignDeapartementFromUniversite(@PathVariable("idUniv") int idUniversite,@PathVariable("idDep")int idDepartement) {
+    try {
+    eServ.unassignDeapartementFromUniversite(idDepartement, idUniversite);
+    } catch (Exception e) {
+    // TODO: handle exception
+    System.out.println(e.toString());
+    }
+    }
 }

@@ -16,6 +16,7 @@ public interface DepartementService {
     public void supprimerDepartement(Integer id);
 
     public List<Departement> afficherDepartements();
-
+    
+    public List<Departement> retrieveDepartByUniId(Integer idUniversite);
 
 }

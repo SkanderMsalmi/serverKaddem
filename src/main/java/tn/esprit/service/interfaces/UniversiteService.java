@@ -11,4 +11,5 @@ public interface UniversiteService {
 	Universite retrieveUniversite(Integer idUniversite);
 	void removeUniversite(Integer idUniversite);
 	public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement);
+	public void unassignDeapartementFromUniversite(Integer idDepartement, Integer idUniversite);
 }

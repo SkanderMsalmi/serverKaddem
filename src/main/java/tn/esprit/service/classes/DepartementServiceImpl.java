@@ -50,6 +50,13 @@ public class DepartementServiceImpl implements DepartementService{
 	        return departements;
 
 	    }
+	    
+	    @Override
+	    public List<Departement> retrieveDepartByUniId(Integer idUniversite){
+
+	    return  depRepo.retrieveDepartByUniId(idUniversite);
+
+	    }
 	//@Override
 	//public Departement updateDepartement(Departement e) {
 		// TODO Auto-generated method stub

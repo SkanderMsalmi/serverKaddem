@@ -62,4 +62,14 @@ public class UniversiteServiceImpl implements UniversiteService {
 		
 ;	}
 
+	 @Override
+	public void unassignDeapartementFromUniversite(Integer idDepartement,Integer idUniversite) {
+	// TODO Auto-generated method stub
+
+	Departement d = depRep.findById(idDepartement).get();
+	Universite u = univRep.findById(idUniversite).get();
+	u.getDepartements().remove(d);
+	univRep.save(u);
+	}
+
 }
