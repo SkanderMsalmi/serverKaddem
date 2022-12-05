@@ -94,6 +94,26 @@ public class EtudiantController {
 			return null;
 		}
 	}
+	
+	@PostMapping("/assignEtudiantToEquipe/{idEtudiant}/{idEquipe}")
+	public void assignEtudiantToEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.assigEtudiantToEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+	}
+	@PostMapping("/unassignEtudiantFromoEquipe/{idEtudiant}/{idEquipe}")
+	public void unassignEtudiantFromoEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
+		try {
+			eServ.unassignEtudiantFromEquipe(idEtudiant, idEquipe);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+	}
+	
 	public static byte[] compressBytes(byte[] data) {
 		Deflater deflater = new Deflater();
 		deflater.setInput(data);
