@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.persistance.entities.Departement;
 import tn.esprit.persistance.entities.Enseignant;
+import tn.esprit.persistance.entities.Equipe;
 import tn.esprit.persistance.entities.Etudiant;
 import tn.esprit.persistance.repositories.DepartementRepository;
 import tn.esprit.persistance.repositories.EnseignantRepository;
 import tn.esprit.service.interfaces.EnseignantService;
-import tn.esprit.persistance.entities.Departement;
+
 
 @Service
 public class EnseignantServiceImpl implements EnseignantService { 
@@ -82,7 +84,17 @@ public class EnseignantServiceImpl implements EnseignantService {
 		
 	}
 
-
+	@Override
+	public void unassignEnseignantFromDepartement(Integer idDepart, Integer idEnseignant) {
+		// TODO Auto-generated method stub
+		Enseignant ens = ensRep.findById(idEnseignant).get();
+		
+		Departement dept = depRep.findById(idDepart).get();
+	
+		
+		ens.setDepartement(null);
+		ensRep.save(ens);
+	}
 
 	//@Override
 	//public Enseignant removeFromDepartement(Integer idEnseignant) {

@@ -17,5 +17,5 @@ public interface EnseignantService {
 	List<Enseignant> getEnseignantsByDepartement (Integer idDepartement);
 	public void assignEnseignantToDepartement (Integer idEnseignant, Integer idDepart) ;
 	
-
+	public void unassignEnseignantFromDepartement(Integer idEnseignant, Integer idDepart) ;
 }

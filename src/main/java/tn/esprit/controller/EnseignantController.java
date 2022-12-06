@@ -58,6 +58,10 @@ public class EnseignantController {
     	ensDep.assignEnseignantToDepartement(idDepratement, idEnseignant);
     }
     
+    @DeleteMapping("unassignEnseignantFromDepartement/{iddep}/{idEns}")
+    public void unassignEnseignantFromDepartement(@PathVariable("iddep") Integer idDepratement, @PathVariable("idEns") Integer idEnseignant) {
+    	ensDep.unassignEnseignantFromDepartement(idDepratement, idEnseignant);
+    }
     
   //  @PutMapping("removeFromDepartement/{idEns}")
     //public void removeFromDepartement( @PathVariable("idEns") Integer idEnseignant) {
