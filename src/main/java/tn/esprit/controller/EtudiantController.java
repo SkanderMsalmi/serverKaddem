@@ -104,7 +104,8 @@ public class EtudiantController {
 			System.out.println(e.toString());
 		}
 	}
-	@PostMapping("/unassignEtudiantFromoEquipe/{idEtudiant}/{idEquipe}")
+	
+	@DeleteMapping("/unassignEtudiantFromEquipe/{idEtudiant}/{idEquipe}")
 	public void unassignEtudiantFromoEquipe(@PathVariable("idEtudiant") int idEtudiant,@PathVariable("idEquipe")int idEquipe) {
 		try {
 			eServ.unassignEtudiantFromEquipe(idEtudiant, idEquipe);

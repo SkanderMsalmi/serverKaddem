@@ -56,10 +56,10 @@ public class Etudiant implements Serializable{
 	private Set<Contrat> contrat;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.DETACH)
 	private Set<Equipe> equipes;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	private Departement departement;
 	
