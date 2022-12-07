@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.persistance.entities.Contrat;
+import tn.esprit.persistance.entities.Departement;
 import tn.esprit.service.interfaces.ContratService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -51,4 +52,10 @@ public class ContratController {
 	public Contrat affectContratToEtudiant(@RequestBody Contrat c,@PathVariable("nomE") String nomE,@PathVariable("prenomE") String prenomE) {
 		return CServ.affectContratToEtudiant(c, nomE, prenomE);
 	}
+	
+    @GetMapping
+    ("/displayContratsEtudiant/{id}")
+    public List<Contrat> displayContratEtu(@PathVariable("id") Integer idEtudiant){
+    return CServ.retrieveContratByEtuId(idEtudiant);
+    }
 }

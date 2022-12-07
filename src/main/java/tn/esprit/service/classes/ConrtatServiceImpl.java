@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.persistance.entities.Contrat;
+import tn.esprit.persistance.entities.Departement;
 import tn.esprit.persistance.entities.Etudiant;
 import tn.esprit.persistance.repositories.ContratRepository;
 import tn.esprit.persistance.repositories.EtudiantRepository;
@@ -64,5 +65,11 @@ public class ConrtatServiceImpl implements ContratService{
 		}
 
 	}
+	   @Override
+	   public List<Contrat> retrieveContratByEtuId(Integer idEtudiant){
+
+	    return  contRep.retrieveContratByEtuId(idEtudiant);
+
+	    }
 
 }
