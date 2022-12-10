@@ -2,6 +2,7 @@ package tn.esprit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.persistance.entities.DetailEquipe;
 import tn.esprit.service.interfaces.DetailEquipeService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/ControleurDetailEquipe")
 public class DetailEquipeController {
 	@Autowired
 	DetailEquipeService eServ;
 	
-	@GetMapping("/displayDetailEquipe")
-	public DetailEquipe displayDetailEquipe(@PathVariable("id")int id) {
-		return eServ.retrieveDetailEquipe(id);
+	@GetMapping("/displayDetailEquipe/{idDetailEquipe}")
+	public DetailEquipe displayDetailEquipe(@PathVariable("idDetailEquipe")int idDetailEquipe) {
+		return eServ.retrieveDetailEquipe(idDetailEquipe);
 	}
 	
 	@GetMapping("/displayDetailEquipes")
@@ -30,7 +31,7 @@ public class DetailEquipeController {
 		return eServ.retrieveAllDetailEquipes();
 	}
 	
-	@PostMapping("/addDetailEquipe")
+	@PostMapping("/addDetailEquipe/{idEquipe}")
 	public DetailEquipe addDetailEquipe( @RequestBody DetailEquipe e) {
 		return eServ.addDetailEquipe(e);
 	}
@@ -40,8 +41,8 @@ public class DetailEquipeController {
 		return eServ.updateDetailEquipe(e);
 	}
 	
-	@DeleteMapping("/deleteDetailEquipe")
-	public void deleteDetailEquipe(@PathVariable("id")int id) {
+	@DeleteMapping("/deleteDetailEquipe/{idDetailEquipe}")
+	public void deleteDetailEquipe(@PathVariable("idDetailEquipe")Integer id) {
 		eServ.removeDetailEquipe(id);
 	}
 }

@@ -97,6 +97,36 @@ public class EtudiantServiceImpl implements EtudiantService{
 		return null;
 	}
 
+	@Override
+	public void assigEtudiantToEquipe(Integer idEtudiant, Integer idEquipe) {
+		// TODO Auto-generated method stub
+		
+		
+		Etudiant etud = etudRep.findById(idEtudiant).get();
+		
+		Equipe equip = equipRep.findById(idEquipe).get();
+	
+		
+		equip.getEtudiants().add(etud);
+
+		equipRep.save(equip);
+		
+	}
+
+	@Override
+	public void unassignEtudiantFromEquipe(Integer idEtudiant, Integer idEquipe) {
+		// TODO Auto-generated method stub
+		Etudiant etud = etudRep.findById(idEtudiant).get();
+		
+		Equipe equip = equipRep.findById(idEquipe).get();
+	
+		
+		equip.getEtudiants().remove(etud);
+		equipRep.save(equip);
+	}
+	
+	
+
 //	@Override
 //	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
 //		List<Etudiant> etudiants = etudRep.findEtuidantByDepartement(idDepartement);

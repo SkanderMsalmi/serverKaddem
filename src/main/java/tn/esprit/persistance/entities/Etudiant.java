@@ -46,6 +46,8 @@ public class Etudiant implements Serializable{
 	private Integer idEtudiant;
 	private String prenomE;
 	private String nomE;
+	@Column(length = 50000000)
+	private byte[] profileImage;
 	@Enumerated(EnumType.STRING)
 	private Option opt;
 	
@@ -54,10 +56,10 @@ public class Etudiant implements Serializable{
 	private Set<Contrat> contrat;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "etudiants",cascade = CascadeType.DETACH)
 	private Set<Equipe> equipes;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	private Departement departement;
 	

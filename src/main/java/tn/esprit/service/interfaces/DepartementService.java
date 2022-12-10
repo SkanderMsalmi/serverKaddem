@@ -6,11 +6,17 @@ import tn.esprit.persistance.entities.Departement;
 import tn.esprit.persistance.entities.Etudiant;
 
 public interface DepartementService {
-	List<Departement> retrieveAllDepartements();
-	Departement addDepartement(Departement e);
-	Departement updateDepartement(Departement e);
-	Departement retrieveDepartement(Integer idDepartement);
-	void removeDepartement(Integer idDepartement);
 
+    public Departement afficherDepartement(Integer id);
+
+    public Departement ajouterDepartement(Departement e);
+
+    public Departement mettreAjourDepartement(Departement e);
+
+    public void supprimerDepartement(Integer id);
+
+    public List<Departement> afficherDepartements();
+    
+    public List<Departement> retrieveDepartByUniId(Integer idUniversite);
 
 }
